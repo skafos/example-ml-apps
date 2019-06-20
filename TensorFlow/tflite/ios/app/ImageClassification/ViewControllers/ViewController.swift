@@ -17,20 +17,9 @@ import AVFoundation
 import Foundation
 import UIKit
 
-/// Information about a model file or labels file.
-// typealias FileInfo = (name: String, extension: String)
-
-/// Information about the MobileNet model.
-enum DefaultMobileNet {
-    static let modelPath = Bundle.main.path(
-        forResource: "mobilenet_quant_v1_224",
-        ofType: "tflite"
-    )
-    static let labelsURL = Bundle.main.url(forResource: "labels", withExtension: "txt")
-}
 
 class ViewController: UIViewController {
-
+  
   // MARK: Storyboards Connections
   @IBOutlet weak var previewView: PreviewView!
   @IBOutlet weak var cameraUnavailableLabel: UILabel!
@@ -38,7 +27,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var bottomSheetView: CurvedView!
   @IBOutlet weak var bottomSheetViewBottomSpace: NSLayoutConstraint!
   @IBOutlet weak var bottomSheetStateImageView: UIImageView!
-    
+  
   // MARK: Constants
   private let animationDuration = 0.5
   private let collapseTransitionThreshold: CGFloat = -40.0
@@ -46,105 +35,89 @@ class ViewController: UIViewController {
   private let delayBetweenInferencesMs: Double = 1000
   private let skafosModelName:String = "ImageClassifier"
   private let docsDir = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!)
-
-
+  
   // MARK: Instance Variables
   // Holds the results at any time
   private var result: Result?
   private var initialBottomSpace: CGFloat = 0.0
   private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
-
-
+  
   // MARK: Controllers that manage functionality
   // Handles all the camera related functionality
   private lazy var cameraCapture = CameraFeedManager(previewView: previewView)
-
+  
   // Initialize the model handler class and the inference handler
-  var modelDataHandler: ModelDataHandler? =
-    ModelDataHandler(modelFilePath: DefaultMobileNet.modelPath!, labelsFileURL: DefaultMobileNet.labelsURL!)
-    
+  private lazy var modelDataHandler: ModelDataHandler? = {
+    guard let modelPath = Bundle.main.path(forResource: "mobilenet_quant_v1_224", ofType: "tflite"),
+          let labelsURL = Bundle.main.url(forResource: "labels", withExtension: "txt") else {
+            debugPrint("Initial model and labels failed to load")
+            return nil
+    }
+    return ModelDataHandler(modelFilePath: modelPath, labelsFileURL: labelsURL)
+  }()
+  
   // Handles the presenting of results on the screen
   private var inferenceViewController: InferenceViewController?
-    
+  
   // MARK: View Handling Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     // Check to see if there are model updates from Skafos
     self.loadModel()
-
+    
     cameraCapture.delegate = self
-
     addPanGesture()
   }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-    changeBottomViewState()
-    cameraCapture.checkCameraConfigurationAndStartSession()
-  }
-
-  override func viewWillDisappear(_ animated: Bool) {
-    cameraCapture.stopSession()
-  }
-
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .lightContent
-  }
-
+  
   @objc
   func loadModel(_ sender:Any? = nil) {
     print("Loading Model from Skafos...")
     Skafos.load(asset: self.skafosModelName) { (error, asset) in
-        // Log the asset in the console
-        console.info(asset)
-        guard error == nil else {
-            console.error("Skafos load error: \(String(describing: error))")
-            return
-        }
-        // Unpack the newly delivered asset
-        self.unpackAsset(asset)
-    }
-  }
-    
-  func unpackAsset(_ asset: Asset) {
-    var modelFullPath:String? = nil
-    var modelPath:String? = nil
-    var labelsFullPath:String? = nil
-    var labelsURL:URL? = nil
-    for file in asset.files {
-      // if we get a .tflite file, load it up
-      if file.name.hasSuffix(".tflite") {
-        modelFullPath = splitPath(path: file.path)
-        //checkPath(url: docsDir, path: modelFullPath!)
-        modelPath = self.docsDir.appendingPathComponent(modelFullPath!).path
+      // Log the asset in the console
+      console.info(asset)
+      guard error == nil else {
+        console.error("Skafos load error: \(String(describing: error))")
+        return
       }
-      else if file.name == "labels.txt" {
-        labelsFullPath = splitPath(path: file.path)
-        //checkPath(url: docsDir, path: labelsFullPath!)
-        labelsURL = self.docsDir.appendingPathComponent(labelsFullPath!)
-      }
-    }
-    self.modelDataHandler = ModelDataHandler(modelFilePath: modelPath!, labelsFileURL: labelsURL!)
-  }
-    
-  func checkPath(url: URL, path: String) {
-    let pathComponent = url.appendingPathComponent(path)
-    let filePath = pathComponent.path
-    let fileManager = FileManager.default
-    if fileManager.fileExists(atPath: filePath) {
-      print("FILE \(filePath) AVAILABLE")
-    } else {
-      print("FILE \(filePath) NOT AVAILABLE")
+      // Unpack the newly delivered asset
+      self.unpackAsset(asset)
     }
   }
   
-  func splitPath(path: String) -> String {
-    let pathSplits = path.components(separatedBy: "Documents/")
-    return pathSplits[1]
+  func unpackAsset(_ asset: Asset) {
+    // Pull out the required files from the asset
+    guard let tfFile = asset.files.filter({$0.name.hasSuffix(".tflite")}).first,
+          let labelsFile = asset.files.filter({$0.name == "labels.txt"}).first else { fatalError("I need these two things") }
+    
+    // Extract the right paths to the files
+    let modelFullPath = splitPath(path: tfFile.path)
+    let modelPath = docsDir.appendingPathComponent(modelFullPath).path
+    let labelsFullPath = splitPath(path: labelsFile.path)
+    let labelsURL = docsDir.appendingPathComponent(labelsFullPath)
+    
+    // Re-initialize the tflite model handler class
+    self.modelDataHandler = ModelDataHandler(modelFilePath: modelPath, labelsFileURL: labelsURL)
   }
-
+  
+  func splitPath(path: String) -> String {
+    return path.components(separatedBy: "Documents/").last ?? ""
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    changeBottomViewState()
+    cameraCapture.checkCameraConfigurationAndStartSession()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    cameraCapture.stopSession()
+  }
+  
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
   func presentUnableToResumeSessionAlert() {
     let alert = UIAlertController(
       title: "Unable to Resume Session",
@@ -154,7 +127,7 @@ class ViewController: UIViewController {
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     self.present(alert, animated: true)
   }
-
+  
   // MARK: Storyboard Segue Handlers
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
@@ -168,35 +141,35 @@ class ViewController: UIViewController {
       inferenceViewController?.maxResults = tempModelDataHandler.resultCount
       inferenceViewController?.threadCountLimit = tempModelDataHandler.threadCountLimit
       inferenceViewController?.delegate = self
-
+      
     }
   }
 }
 
-  // MARK: InferenceViewControllerDelegate Methods
-  extension ViewController: InferenceViewControllerDelegate {
-    func didChangeThreadCount(to count: Int) {
-      if modelDataHandler?.threadCount == count { return }
-        // modelDataHandler = ModelDataHandler(
-         //   modelFileInfo: MobileNet.modelInfo,
-         //   labelsFileInfo: MobileNet.labelsInfo,
-         //   threadCount: count
-        //)
-      }
+// MARK: InferenceViewControllerDelegate Methods
+extension ViewController: InferenceViewControllerDelegate {
+  func didChangeThreadCount(to count: Int) {
+    if modelDataHandler?.threadCount == count { return }
+    // modelDataHandler = ModelDataHandler(
+    //   modelFileInfo: MobileNet.modelInfo,
+    //   labelsFileInfo: MobileNet.labelsInfo,
+    //   threadCount: count
+    //)
   }
+}
 
 
 // MARK: CameraFeedManagerDelegate Methods
 extension ViewController: CameraFeedManagerDelegate {
-
+  
   func didOutput(pixelBuffer: CVPixelBuffer) {
     let currentTimeMs = Date().timeIntervalSince1970 * 1000
     guard (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs else { return }
     previousInferenceTimeMs = currentTimeMs
-
+    
     // Pass the pixel buffer to TensorFlow Lite to perform inference.
     result = modelDataHandler?.runModel(onFrame: pixelBuffer)
-
+    
     // Display results by handing off to the InferenceViewController.
     DispatchQueue.main.async {
       let resolution = CGSize(width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
@@ -205,10 +178,10 @@ extension ViewController: CameraFeedManagerDelegate {
       self.inferenceViewController?.tableView.reloadData()
     }
   }
-
+  
   // MARK: Session Handling Alerts
   func sessionWasInterrupted(canResumeManually resumeManually: Bool) {
-
+    
     // Updates the UI when session is interupted.
     if resumeManually {
       self.resumeButton.isHidden = false
@@ -216,47 +189,47 @@ extension ViewController: CameraFeedManagerDelegate {
       self.cameraUnavailableLabel.isHidden = false
     }
   }
-
+  
   func sessionInterruptionEnded() {
     // Updates UI once session interruption has ended.
     if !self.cameraUnavailableLabel.isHidden {
       self.cameraUnavailableLabel.isHidden = true
     }
-
+    
     if !self.resumeButton.isHidden {
       self.resumeButton.isHidden = true
     }
   }
-
+  
   func sessionRunTimeErrorOccured() {
     // Handles session run time error by updating the UI and providing a button if session can be manually resumed.
     self.resumeButton.isHidden = false
   }
-
+  
   func presentCameraPermissionsDeniedAlert() {
     let alertController = UIAlertController(title: "Camera Permissions Denied", message: "Camera permissions have been denied for this app. You can change this by going to Settings", preferredStyle: .alert)
-
+    
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     let settingsAction = UIAlertAction(title: "Settings", style: .default) { (action) in
       UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
     }
     alertController.addAction(cancelAction)
     alertController.addAction(settingsAction)
-
+    
     present(alertController, animated: true, completion: nil)
   }
-
+  
   func presentVideoConfigurationErrorAlert() {
     let alert = UIAlertController(title: "Camera Configuration Failed", message: "There was an error while configuring camera.", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
+    
     self.present(alert, animated: true)
   }
 }
 
 // MARK: Bottom Sheet Interaction Methods
 extension ViewController {
-
+  
   // MARK: Bottom Sheet Interaction Methods
   /**
    This method adds a pan gesture to make the bottom sheet interactive.
@@ -265,18 +238,18 @@ extension ViewController {
     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(ViewController.didPan(panGesture:)))
     bottomSheetView.addGestureRecognizer(panGesture)
   }
-
-
+  
+  
   /** Change whether bottom sheet should be in expanded or collapsed state.
    */
   private func changeBottomViewState() {
-
+    
     guard let inferenceVC = inferenceViewController else {
       return
     }
-
+    
     if bottomSheetViewBottomSpace.constant == inferenceVC.collapsedHeight - bottomSheetView.bounds.size.height {
-
+      
       bottomSheetViewBottomSpace.constant = 0.0
     }
     else {
@@ -284,12 +257,12 @@ extension ViewController {
     }
     setImageBasedOnBottomViewState()
   }
-
+  
   /**
    Set image of the bottom sheet icon based on whether it is expanded or collapsed
    */
   private func setImageBasedOnBottomViewState() {
-
+    
     if bottomSheetViewBottomSpace.constant == 0.0 {
       bottomSheetStateImageView.image = UIImage(named: "down_icon")
     }
@@ -297,15 +270,15 @@ extension ViewController {
       bottomSheetStateImageView.image = UIImage(named: "up_icon")
     }
   }
-
+  
   /**
    This method responds to the user panning on the bottom sheet.
    */
   @objc func didPan(panGesture: UIPanGestureRecognizer) {
-
+    
     // Opens or closes the bottom sheet based on the user's interaction with the bottom sheet.
     let translation = panGesture.translation(in: view)
-
+    
     switch panGesture.state {
     case .began:
       initialBottomSpace = bottomSheetViewBottomSpace.constant
@@ -322,37 +295,37 @@ extension ViewController {
       break
     }
   }
-
+  
   /**
    This method sets bottom sheet translation while pan gesture state is continuously changing.
    */
   private func translateBottomSheet(withVerticalTranslation verticalTranslation: CGFloat) {
-
+    
     let bottomSpace = initialBottomSpace - verticalTranslation
     guard bottomSpace <= 0.0 && bottomSpace >= inferenceViewController!.collapsedHeight - bottomSheetView.bounds.size.height else {
       return
     }
     setBottomSheetLayout(withBottomSpace: bottomSpace)
   }
-
+  
   /**
    This method changes bottom sheet state to either fully expanded or closed at the end of pan.
    */
   private func translateBottomSheetAtEndOfPan(withVerticalTranslation verticalTranslation: CGFloat) {
-
+    
     // Changes bottom sheet state to either fully open or closed at the end of pan.
     let bottomSpace = bottomSpaceAtEndOfPan(withVerticalTranslation: verticalTranslation)
     setBottomSheetLayout(withBottomSpace: bottomSpace)
   }
-
+  
   /**
    Return the final state of the bottom sheet view (whether fully collapsed or expanded) that is to be retained.
    */
   private func bottomSpaceAtEndOfPan(withVerticalTranslation verticalTranslation: CGFloat) -> CGFloat {
-
+    
     // Calculates whether to fully expand or collapse bottom sheet when pan gesture ends.
     var bottomSpace = initialBottomSpace - verticalTranslation
-
+    
     var height: CGFloat = 0.0
     if initialBottomSpace == 0.0 {
       height = bottomSheetView.bounds.size.height
@@ -360,9 +333,9 @@ extension ViewController {
     else {
       height = inferenceViewController!.collapsedHeight
     }
-
+    
     let currentHeight = bottomSheetView.bounds.size.height + bottomSpace
-
+    
     if currentHeight - height <= collapseTransitionThreshold {
       bottomSpace = inferenceViewController!.collapsedHeight - bottomSheetView.bounds.size.height
     }
@@ -372,18 +345,18 @@ extension ViewController {
     else {
       bottomSpace = initialBottomSpace
     }
-
+    
     return bottomSpace
   }
-
+  
   /**
    This method layouts the change of the bottom space of bottom sheet with respect to the view managed by this controller.
    */
   func setBottomSheetLayout(withBottomSpace bottomSpace: CGFloat) {
-
+    
     view.setNeedsLayout()
     bottomSheetViewBottomSpace.constant = bottomSpace
     view.setNeedsLayout()
   }
-
+  
 }
