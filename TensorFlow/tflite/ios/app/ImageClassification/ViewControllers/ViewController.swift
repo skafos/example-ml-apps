@@ -36,15 +36,17 @@ class ViewController: UIViewController {
   @IBOutlet weak var cameraUnavailableLabel: UILabel!
   @IBOutlet weak var resumeButton: UIButton!
   @IBOutlet weak var bottomSheetView: CurvedView!
-
   @IBOutlet weak var bottomSheetViewBottomSpace: NSLayoutConstraint!
   @IBOutlet weak var bottomSheetStateImageView: UIImageView!
+    
   // MARK: Constants
   private let animationDuration = 0.5
   private let collapseTransitionThreshold: CGFloat = -40.0
   private let expandThransitionThreshold: CGFloat = 40.0
   private let delayBetweenInferencesMs: Double = 1000
   private let skafosModelName:String = "ImageClassifier"
+  private let docsDir = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!)
+
 
   // MARK: Instance Variables
   // Holds the results at any time
@@ -107,26 +109,35 @@ class ViewController: UIViewController {
   }
     
   func unpackAsset(_ asset: Asset) {
-    guard let docsDir:URL = URL(string: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!) else {
-        fatalError(" I HAVE DOCS DIR?!")
-    }
-    var modelFilePath:String? = nil
+    var modelFullPath:String? = nil
     var modelPath:String? = nil
-    var labelFilePath:String? = nil
+    var labelsFullPath:String? = nil
     var labelsURL:URL? = nil
     for file in asset.files {
       // if we get a .tflite file, load it up
       if file.name.hasSuffix(".tflite") {
-        modelFilePath = splitPath(path: file.path)
-        modelPath = docsDir.appendingPathComponent(modelFilePath!).path
+        modelFullPath = splitPath(path: file.path)
+        //checkPath(url: docsDir, path: modelFullPath!)
+        modelPath = self.docsDir.appendingPathComponent(modelFullPath!).path
       }
       else if file.name == "labels.txt" {
-        labelFilePath = splitPath(path: file.path)
-        labelsURL = docsDir.appendingPathComponent(labelFilePath!)
+        labelsFullPath = splitPath(path: file.path)
+        //checkPath(url: docsDir, path: labelsFullPath!)
+        labelsURL = self.docsDir.appendingPathComponent(labelsFullPath!)
       }
     }
-
     self.modelDataHandler = ModelDataHandler(modelFilePath: modelPath!, labelsFileURL: labelsURL!)
+  }
+    
+  func checkPath(url: URL, path: String) {
+    let pathComponent = url.appendingPathComponent(path)
+    let filePath = pathComponent.path
+    let fileManager = FileManager.default
+    if fileManager.fileExists(atPath: filePath) {
+      print("FILE \(filePath) AVAILABLE")
+    } else {
+      print("FILE \(filePath) NOT AVAILABLE")
+    }
   }
   
   func splitPath(path: String) -> String {
@@ -141,16 +152,13 @@ class ViewController: UIViewController {
       preferredStyle: .alert
     )
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
     self.present(alert, animated: true)
   }
 
   // MARK: Storyboard Segue Handlers
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
-
     if segue.identifier == "EMBED" {
-
       guard let tempModelDataHandler = modelDataHandler else {
         return
       }
@@ -163,12 +171,10 @@ class ViewController: UIViewController {
 
     }
   }
-
 }
 
   // MARK: InferenceViewControllerDelegate Methods
   extension ViewController: InferenceViewControllerDelegate {
-    
     func didChangeThreadCount(to count: Int) {
       if modelDataHandler?.threadCount == count { return }
         // modelDataHandler = ModelDataHandler(

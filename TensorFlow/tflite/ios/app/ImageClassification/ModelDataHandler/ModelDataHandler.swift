@@ -177,11 +177,11 @@ class ModelDataHandler {
 
   /// Loads the labels from the labels file and stores them in the `labels` property.
   private func loadLabels(labelsURL: URL) {
-    print("Loading Label URL: \(labelsURL)")
     do {
       let contents = try String(contentsOf: labelsURL, encoding: .utf8)
       labels = contents.components(separatedBy: .newlines)
-    } catch {
+    } catch let error {
+      print("ERROR: \(error)")
       fatalError("Labels file cannot be read. Please add a valid labels file and try again.")
     }
   }
