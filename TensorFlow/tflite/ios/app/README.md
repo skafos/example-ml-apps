@@ -1,42 +1,24 @@
-# TensorFlow Lite image classification iOS example application
+# TensorFlow Lite Image Classification iOS App
 
 ## Overview
-
 This is an example application for [TensorFlow Lite](https://tensorflow.org/lite)
 on iOS. It uses [Image classification](https://www.tensorflow.org/lite/models/image_classification/overview)
 to continuously classify whatever it sees from the device's back camera, using
 a quantized MobileNet model. The application must be run on device.
 
-These instructions walk you through building and
-running the demo on an iOS device. For an explanation of the source, see
-[TensorFlow Lite iOS image classification example](https://www.tensorflow.org/lite/models/image_classification/ios).
-
-<!-- TODO(b/124116863): Add app screenshot. -->
+**[Skafos](https://skafos.ai) has been integrated to deliver model updates over-the-air.**
 
 ### Model
 For details of the model used, visit [Image classification](https://www.tensorflow.org/lite/models/image_classification/overview).
 
-The model will be downloaded as part of the build process.
+In the `model-building/` section, you should have trained your own model with
 
-### iOS app details
-
-The app is written entirely in Swift and uses the TensorFlow Lite
-[Swift library](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/experimental/swift)
-for performing image classification.
-
-Note: Objective-C developers should use the TensorFlow Lite
-[Objective-C library](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/experimental/objc).
-
-## Requirements
+### Requirements
 
 *   Device with iOS 12.0 or above
-
 *   Xcode 10.0 or above
-
 *   Valid Apple Developer ID
-
 *   Xcode command-line tools (run `xcode-select --install`)
-
 *   [CocoaPods](https://cocoapods.org/) (run `bash sudo gem install cocoapods`)
 
 If this is a new install, you will need to run the Xcode application once to
@@ -46,13 +28,13 @@ Note: The demo app requires a camera and must be executed on a real iOS device.
 You can build it and run with the iPhone Simulator, but the app will raise a
 `Camera not found` exception.
 
-## Build and run
+## Build and Run
 
 1.  Clone this GitHub repository to your workstation. `bash git clone
-    https://github.com/tensorflow/examples.git`
+    https://github.com/skafos/example-ml-apps.git`
 
-2.  Install the pod to generate the workspace file: `bash cd
-    examples/lite/examples/image_classification/ios pod install`
+2.  Install the pod to generate the workspace file: `cd
+    example-ml-apps/TensorFlow/tflite/ios/app/ && pod install`
 
 Note: If you have installed this pod before and that command doesn't work, try
 `pod update`.
@@ -60,7 +42,7 @@ Note: If you have installed this pod before and that command doesn't work, try
 At the end of this step you should have a directory called
 `ImageClassification.xcworkspace`.
 
-1.  Open the project in Xcode with the following command: `bash open
+1.  Open the project in Xcode with the following command: `open
     ImageClassification.xcworkspace`
 
 This launches Xcode and opens the `ImageClassification` project.
@@ -74,12 +56,19 @@ This launches Xcode and opens the `ImageClassification` project.
     create a unique identifier, try adding your initials and a number to the end
     of the string.
 
-3.  With an iOS device connected, build and run the app in Xcode.
+3. Add your Skafos environment keys to the `AppDelegate.swift` file.
+
+4. With an iOS device connected, clean (`cmd + k` and `cmd + shift + k`),
+build and run (`cmd + R`) the app in Xcode.
 
 You'll have to grant permissions for the app to use the device's camera. Point
 the camera at various objects and enjoy seeing how the model classifies things!
 
-## Model references
+**The app should build and install on your test device with the INITIAL tflite model.**
+
+*After you've deployed your newly trained ["More Pets" tflite model](https://github.com/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/model-building/more_pets_tflite.ipynb) from the dashboard, re-run your application, and you should see the model predictions change to reflect the newly delivered model! It may take a few seconds depending on network speed. Congratulations - you've just deployed your first Skafos model version to an app!*
+
+### Warning
 _Do not delete the empty references_ to the .tflite and .txt files after you
 clone the repo and open the project. These references will be fulfilled once the
 model and label files are downloaded when the application is built and run for
