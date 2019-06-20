@@ -1,0 +1,24 @@
+PODS:
+  - Skafos (4.0.2)
+  - TensorFlowLiteC (0.2.0)
+  - TensorFlowLiteSwift (0.2.0):
+    - TensorFlowLiteC (= 0.2.0)
+
+DEPENDENCIES:
+  - Skafos (~> 4.0.2)
+  - TensorFlowLiteSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Skafos
+    - TensorFlowLiteC
+    - TensorFlowLiteSwift
+
+SPEC CHECKSUMS:
+  Skafos: 95a575f9784436c9aef9f722e04ee84099101027
+  TensorFlowLiteC: c90ae90f5d8194e3c66518e576f53cf4c1e7f42b
+  TensorFlowLiteSwift: 2499b9629744d0962de7340b53746d1f46f59096
+
+PODFILE CHECKSUM: a235d997270c52c3a2338b346330e700a4fe32f8
+
+COCOAPODS: 1.6.1

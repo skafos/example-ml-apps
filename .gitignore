@@ -1,1 +1,52 @@
-app/
+# ipython
+*.ipynb_checkpoints
+
+# Xcode
+build/*
+*.pbxuser
+*.xcscmblueprint
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+UserInterfaceState.xcuserstate
+!default.xcworkspace
+profile
+*.moved-aside
+ImgBite.xcworkspace/xcuserdata/wcope.xcuserdatad/UserInterfaceState.xcuserstate
+
+.DS_Store
+Builds/*
+DTS*
+# OS X Finder
+# Xcode per-user config
+*.mode1
+*.perspective
+xcuserdata
+# Build products
+build/
+*.o
+*.LinkFileList
+*.hmap
+# Automatic backup files
+*~.nib/
+*.swp
+*~
+*.dat
+*.dep
+
+.gitmodules
+# AppCode specific files
+.idea/
+*.iml
+ImgBite.xcworkspace/xcshareddata/Pay.xccheckout
+
+# fastlane specific
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/metadata
