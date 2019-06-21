@@ -7,7 +7,7 @@ Training (or building) a model is the process of using existing data, running it
 
 ## Current Examples
 
-Currently, we have one example notebook, [more_pets_tflite.ipynb](https://colab.research.google.com/github/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/model-building/more_pets_tflite.ipynb), but may add others if the need arises.
+Currently, we have one example notebook, [`more_pets_tflite.ipynb`](https://colab.research.google.com/github/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/model-building/more_pets_tflite.ipynb), but may add others if the need arises.
 
 * [More Pets](https://colab.research.google.com/github/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/model-building/more_pets_tflite.ipynb): In this example, we train a model to classify an image as a rabbit, mouse, hamster, fish, lizard, or snake. It is similar to [another example](https://colab.research.google.com/github/skafos/colab-example-models/blob/master/ImageClassification/more_pets.ipynb) we've trained, with modifications as appropriate.
 
