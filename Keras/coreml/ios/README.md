@@ -3,7 +3,7 @@
 
 In this example,
 
-model in Keras, upload to Skafos using the Python SDK, and deploy to an
+model in Keras, convert to CoreML format, upload to Skafos using the Python SDK, and deploy to an
 example iOS application.
 
 ## Setups
@@ -11,7 +11,7 @@ In order to get the most value from this example, we recommend following these s
 
 - head over the the
 [Dashboard](https://dashboard.skafos.ai) and login or create a free account.
-- create a new app integration called `WordModel-iOS-App` (or something similar).
+- create a new app integration called `PredictiveKeyboard` (or something similar).
 - create a new model called `WordModel`.
 
 Before playing with the iOS app, go through the model building section next!
