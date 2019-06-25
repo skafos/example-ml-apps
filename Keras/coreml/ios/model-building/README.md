@@ -6,7 +6,7 @@ Phrase generation is the task of predicting the most likely next word, or sequen
 Training (or building) this type of model requires gathering training data, running it through an algorithm, and generating a model artifact, which can then be used to make predictions. In this case, the data are text samples from the works of William Shakespeare, the algorithm is a neural network, and the model artifact is a `.mlmodel` object.
 
 ## Current Examples
-Currently, we have one example notebook, [phrase_generator_model.ipynb](https://colab.research.google.com/github/skafos/example-ml-apps/blob/master/Keras/coreml/ios/model-building/phrase_generator_model.ipynb), but may add others if the need arises.
+Currently, we have one example notebook, [`phrase_generator_model.ipynb`](https://colab.research.google.com/github/skafos/example-ml-apps/blob/master/Keras/coreml/ios/model-building/phrase_generator_model.ipynb), but may add others if the need arises.
 
 ## Tips and "Gotchas"
 -  **Training Data**: This model trains on William Shakespeare text. If you want your phrase generator to mimic a different style, you need to swap out the training data for some other writer.
