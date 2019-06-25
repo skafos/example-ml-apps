@@ -14,6 +14,7 @@ import Foundation
 class ViewController: UIViewController {
   
   // MARK: Properties
+  @IBOutlet weak var submitButton: UIButton!
   @IBOutlet weak var inputField: UITextField!
   @IBOutlet weak var generatedPhrase: UILabel!
   @IBOutlet weak var reloadModelButton: UIButton!
@@ -174,15 +175,12 @@ class ViewController: UIViewController {
   
   
   // MARK: Actions
-  @IBAction func inputFieldChanged(_ sender: Any) {
+  @IBAction func submitText(_ sender: Any) {
     if inputField.text! == "" {
       // Reset to default state
-      generatedPhrase.text = "Waiting For Input!"
-    }
-    if inputField.text!.suffix(1) == " " {
-      // Clear old label state
-      generatedPhrase.text = "..."
-      // Sample prediction
+      generatedPhrase.text = "Need some seed text!"
+    } else {
+      // get a phrase prediction
       let newPhrase = generatePhrase(initialWords: inputField.text!, length: Int(phraseLenValue.text!)!)
       print("New Phrase from Model: \(newPhrase)")
       // Set label
