@@ -32,13 +32,18 @@ class ViewController: UIViewController {
   private lazy var wordIndex = loadWordIndex().sorted(by: <)
   private lazy var bagOfWords:BagOfWords! = BagOfWords(words: wordIndex.map { "\($1)" })
   private lazy var lemmatizer = Lemmatizer()
-
+  
+  // Define tap gesture recognizer to dismiss the keyboard
+  private lazy var tap:UITapGestureRecognizer = {
+    let _tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+    _tap.cancelsTouchesInView = false
+    return _tap
+  }()
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-    tap.cancelsTouchesInView = false
     self.view.addGestureRecognizer(tap)
     
     // Download model and tokenizer (word index) from Skafos
@@ -71,7 +76,7 @@ class ViewController: UIViewController {
   func loadNewWordIndex(_ asset: Asset) -> [Int : String] {
     // Pull out the required files from the asset
     guard let wordIndexFile = asset.files.filter({$0.name == "index_word_lookup.json"}).first else {
-      fatalError("I need these two things")
+      fatalError("I need this thing")
     }
     // Extract the right file path and load the JSON data
     var newWordIndex = [Int : String]()
@@ -95,7 +100,6 @@ class ViewController: UIViewController {
   private func generatePhrase(initialWords: String, length: Int) -> String {
     var phrase = initialWords.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
     var currentWord = initialWords.components(separatedBy: " ").last
-    
     // Loop through and generate a phrase from the model
     for _ in 1...length {
       let nextWords = predictNext(words: phrase, predictionCount: 4)
@@ -128,14 +132,13 @@ class ViewController: UIViewController {
   private func predictNext(words: String, predictionCount: Int) -> [String] {
     print("RUNNING PREDICTION ON TEXT: " + words)
     let lemmas = lemmatizer.lemmatize(text: words).compactMap { $0.1 }
-    print(lemmas)
+    
     // Don't run with scissors
     if lemmas.count == 0 {
       return []
     }
     
     let embedding = bagOfWords.embed(words: lemmas)
-    
     let size = NSNumber(value: embedding.count)
     let mlMultiArrayInput = try! MLMultiArray(shape:[size, 1, 1], dataType:MLMultiArrayDataType.double)
     
@@ -180,27 +183,28 @@ class ViewController: UIViewController {
   
   // MARK: Actions
   @IBAction func submitText(_ sender: Any) {
-    if inputField.text! == "" {
-      // Reset to default state
+    guard let inputText = inputField.text, inputText.count > 0 else {
       generatedPhrase.text = "Need some seed text!"
-    } else {
-      // get a phrase prediction
-      let newPhrase = generatePhrase(initialWords: inputField.text!, length: Int(phraseLenValue.text!)!)
-      print("New Phrase from Model: \(newPhrase)")
-      // Set label
-      if (newPhrase.components(separatedBy: " ").count > 0) {
-        generatedPhrase.text = newPhrase
-      } else {
-        generatedPhrase.text = "No suggestions available!"
-      }
+      return
     }
+
+    // Get a phrase prediction
+    let newPhrase = generatePhrase(initialWords: inputField.text!, length: Int(phraseLenValue.text!)!)
+    print("New Phrase from Model: \(newPhrase)")
+    // Set label
+    let phraseParts = newPhrase.components(separatedBy: " ")
+    guard phraseParts.count > 0 else {
+      generatedPhrase.text = "No suggestions available!"
+      return
+    }
+    generatedPhrase.text = newPhrase
   }
   
   @IBAction func tryReloadingModel(_ sender: UIButton) {
     self.loadModel()
   }
   
-  @IBAction func stepperChanged(_ sender: UIStepper) {
-    phraseLenValue.text = Int(sender.value).description
+  @IBAction func stepperChanged(_ sender: UIStepper){
+    phraseLenValue.text = String(Int(sender.value))
   }
 }
