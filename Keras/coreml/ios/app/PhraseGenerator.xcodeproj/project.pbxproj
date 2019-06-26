@@ -34,6 +34,7 @@
 		B16421CE22BD46C500FD20BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B16421D122BD46C500FD20BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B16421D322BD46C500FD20BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1FB51E322C40CC5004385CB /* PhraseGenerator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhraseGenerator.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 		B16421C622BD46C300FD20BA /* PhraseGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				B1FB51E322C40CC5004385CB /* PhraseGenerator.entitlements */,
 				B129DE9D22BD565700EB3753 /* Resources */,
 				B16421C722BD46C300FD20BA /* AppDelegate.swift */,
 				B16421C922BD46C300FD20BA /* ViewController.swift */,
@@ -142,6 +144,14 @@
 				TargetAttributes = {
 					B16421C322BD46C300FD20BA = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -380,6 +390,7 @@
 			baseConfigurationReference = 039C648F47D197A7A71751D8 /* Pods-PhraseGenerator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PhraseGenerator/PhraseGenerator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PhraseGenerator/Info.plist;
@@ -399,6 +410,7 @@
 			baseConfigurationReference = 6EA1FFDFBDBB333EF87AFD9D /* Pods-PhraseGenerator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PhraseGenerator/PhraseGenerator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PhraseGenerator/Info.plist;

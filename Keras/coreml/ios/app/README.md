@@ -9,8 +9,7 @@ Keras-built neural network to predict likely next words in a phrase given some s
 
 ### Model
 The `PhraseGenModel.mlmodel` included in the app bundle was trained on text
-from the works of **Jane Austen**. In the `model-building/` section, you should have
-trained your own model in the style of **William Shakespeare**.
+from **Presidential Inaugural Addresses** over the last ~40 years. In the `model-building/` section, you should have trained your own model in the style of **William Shakespeare**.
 
 ### Requirements
 

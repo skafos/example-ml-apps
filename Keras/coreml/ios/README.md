@@ -20,7 +20,7 @@ Once you have completed these steps, you will then be able to:
 You can do these things in either order, but we recommend building a second model before building the app itself. This way, you can immediately swap out the default model for the one you've built, and see the power of Skafos.
 
 ### Model Building
-In the `model-building/` folder, we provide a Jupyter Notebook, runnable on Google Colab (with GPU support!). This notebook walks you through building a Keras model that generates new words in a sequence based on some input text.
+In the `model-building/` folder, we provide a Jupyter Notebook, runnable on Google Colab (with GPU support!). This notebook walks you through building a Keras model that generates new words in a sequence based on some input text. By no means is the model perfect, so we recommend taking some time to tune the model to meet your needs.
 
 ### App
 Inside the `app/` folder you'll find a pre-packed Xcode project to work with.
