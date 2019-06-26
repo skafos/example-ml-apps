@@ -37,6 +37,10 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+    tap.cancelsTouchesInView = false
+    self.view.addGestureRecognizer(tap)
+    
     // Download model and tokenizer (word index) from Skafos
     self.loadModel()
   }
@@ -199,7 +203,4 @@ class ViewController: UIViewController {
   @IBAction func stepperChanged(_ sender: UIStepper) {
     phraseLenValue.text = Int(sender.value).description
   }
-  
-  
-
 }
