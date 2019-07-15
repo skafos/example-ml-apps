@@ -3,16 +3,12 @@
 
 ## Overview
 This is an example iOS application that uses a [TensorFlow Lite](https://tensorflow.org/lite) model. Specifically, the app uses an [Image classification](https://www.tensorflow.org/lite/models/image_classification/overview)
-machine learning model to continuously classify whatever it sees from the device's back camera. The model runs on the device itself, which is necessary for optimal user experience. 
+machine learning model to continuously classify whatever it sees from the device's back camera. The model runs on the device itself, which is necessary for optimal user experience.
 
 This app was based on [TensorFlow's example](https://github.com/tensorflow/examples/tree/master/lite/examples/image_classification/ios), but the **[Skafos iOS Framework](https://github.com/skafos/ios)** has been integrated to deliver model updates over-the-air.
 
-### Model
-For details about the default model used in this app example, visit [the Image classification page provided by TensorFlow](https://www.tensorflow.org/lite/models/image_classification/overview).
 
-In the `model-building/` section of this repo, [you can train a replacement model](https://github.com/skafos/example-ml-apps/tree/master/TensorFlow/tflite/ios/model-building) for this image classifier that can be delivered using Skafos. 
-
-### Requirements
+## Requirements
 
 *   Device with iOS 12.0 or above
 *   Xcode 10.0 or above
@@ -27,14 +23,14 @@ _Note: The demo app requires a camera and must be executed on a real iOS device.
 You can build it and run with the iPhone Simulator, but the app will raise a
 `Camera not found` exception._
 
-## Build and Run the App
+## Build & Run: Step-By-Step Instructions
 
 1.  Clone this GitHub repository to your workstation. `bash git clone
     https://github.com/skafos/example-ml-apps.git`
 
 2.  Install the pod to generate the workspace file: `cd
     example-ml-apps/TensorFlow/tflite/ios/app/ && pod install`
-    	
+
     _Note: If you have installed this pod before and that command doesn't work, try
 `pod update`._
 
@@ -70,9 +66,8 @@ bundle separately in that case.
 **The app should build and install on your test device with the INITIAL tflite model.**
 
 ## Update the Model
-1. To update the model, you will first need to build a new model, using the ["More Pets" tflite model](https://github.com/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/model-building/more_pets_tflite.ipynb) included in this repo. 
+1. To update the model, you will first need to build a new model, using the ["More Pets" tflite model](https://github.com/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/model-building/more_pets_tflite.ipynb) included in this repo.
 
-2. After running through that code to build and deliver the model, navigate to your [Skafos Dashboard](https://dashboard.skafos.ai). Once on the dashboard, navigate to the App, and then the model that you made to go with this app integration. These are [noted in the main README for this example](https://github.com/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/README.md). You should see the model you just delivered in the dashboard. Click the "Deploy" button to deliver it to your Dev environment. 
+2. After running through that code to build and deliver the model, navigate to your [Skafos Dashboard](https://dashboard.skafos.ai). Once on the dashboard, navigate to the App, and then the model that you made to go with this app integration. These are [noted in the main README for this example](https://github.com/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/README.md). You should see the model you just delivered in the dashboard. Click the "Deploy" button to deliver it to your Dev environment.
 
 3. You will need to stop and re-run your application in XCode, but then you will see the model predictions change to reflect the newly delivered model! It may take a few seconds depending on network speed. Congratulations - you've just deployed your first Skafos model version to an app!
-

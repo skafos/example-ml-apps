@@ -8,7 +8,7 @@ With the wide array of tools and technologies available, **it is challenging to 
 In this repository, we're assembling example workflows that demonstrate all parts of the end-to-end pipeline: *model training*, *delivery*, and *mobile app integration*.
 
 Each example features:
-- An ML task oriented use-case
+- A task oriented ML use-case
 - An [ML Training Framework](#ml training frameworks) & [On-Device ML Format](#on-device ml formats) (*see description below*)
 - [Skafos](https://dashboard.skafos.ai) for model updates, management, and monitoring
 
@@ -31,7 +31,7 @@ Once you've trained a machine learning model, **you have to convert it to a form
 - [**TFLite**](https://www.tensorflow.org/lite)
 
 ## Available Examples
-Below is a growing list of examples in this repository for you to play with: 
+Below is a growing list of examples in this repository for you to play with:
 
 - [TensorFlow -> TFLite: Image Classification](https://github.com/skafos/example-ml-apps/tree/master/TensorFlow/tflite/ios)
 - [Keras -> CoreML: Phrase Generation](https://github.com/skafos/example-ml-apps/tree/master/Keras/coreml/ios)
