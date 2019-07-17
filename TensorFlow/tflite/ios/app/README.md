@@ -5,8 +5,6 @@
 This is an example iOS application that uses a [TensorFlow Lite](https://tensorflow.org/lite) model. Specifically, the app uses an [Image classification](https://www.tensorflow.org/lite/models/image_classification/overview)
 machine learning model to continuously classify whatever it sees from the device's back camera. The model runs on the device itself, which is necessary for optimal user experience.
 
-This app was based on [TensorFlow's example](https://github.com/tensorflow/examples/tree/master/lite/examples/image_classification/ios), but the **[Skafos iOS Framework](https://github.com/skafos/ios)** has been integrated to deliver model updates over-the-air.
-
 
 ## Requirements
 

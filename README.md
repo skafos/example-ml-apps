@@ -35,8 +35,14 @@ Once you've trained a machine learning model, **you have to convert it to a form
 Our collection of example machine learning apps will continue to grow over time:
 
 - [TensorFlow -> TFLite: Image Classification iOS](https://github.com/skafos/example-ml-apps/tree/master/TensorFlow/tflite/ios)
+  - **ML Use-Case**: Image Classification
+  - **ML Training Framework**: TensorFlow
+  - **On-Device ML Format**: TFLite
 - [Keras -> CoreML: Phrase Generation iOS](https://github.com/skafos/example-ml-apps/tree/master/Keras/coreml/ios)
-
+  - **ML Use-Case**: Natural Language Processing: Text Generation
+  - **ML Training Framework**: Keras
+  - **On-Device ML Format**: CoreML
+  
 #### Getting Started
 First, clone this repo:
 ```bash
