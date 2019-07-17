@@ -69,7 +69,7 @@ bundle separately in that case.
 ## Update the Model
 1. Make sure you have a new model to deploy! Build one here if you haven't already: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/skafos/example-ml-apps/blob/master/TensorFlow/tflite/ios/model-building/more_pets_tflite.ipynb)
 
-2. Go to the [Skafos Dashboard](https://dashboard.skafos.ai), navigate to the App, and then the `ImageClassfier` model that you made to go with this app integration.
+2. Go to the <a href="https://dashboard.skafos.ai" target="_blank">**Skafos Dashboard**</a>, navigate to the App, and then the `ImageClassfier` model that you made to go with this app integration.
 
 3. You should see the model you just delivered in the dashboard. Click the "Deploy" button to deliver it to your Dev environment.
 

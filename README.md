@@ -10,7 +10,7 @@ In this repository, we're assembling example workflows that demonstrate all part
 **Each example features**:
 - A task oriented ML use-case
 - An [ML Training Framework](#ml-training-frameworks) & [On-Device ML Format](#on-device-ml-formats) (*see description below*)
-- [Skafos](https://dashboard.skafos.ai) for model updates, management, and monitoring
+- <a href="https://dashboard.skafos.ai" target="_blank">Skafos</a> for model updates, management, and monitoring
 
 **Each example includes**:
 - Model training code (*Jupyter Nobetook*) that can be run on [**Google Colab**](https://colab.research.google.com/)
@@ -60,7 +60,7 @@ $ more README.md
 ### How To Best Use These Examples
 Feel free to look around and explore as you wish! However we recommend following these steps for each example you try:
 
-1. [Create a free Skafos account](https://dashboard.skafos.ai/sign-up) and login
+1. <a href="https://dashboard.skafos.ai" target="_blank">Create a free Skafos account</a> and login
 2. In the dashboard, create a new app integration and model for the example
 3. Go through the model training and upload steps
 4. Go through the app building steps to see the ML model in action and Skafos perform model updates

@@ -3,7 +3,7 @@
 
 In this example, you will see how to train an **Image Classification**
 model with [**TensorFlow**](www.tensorflow.org), convert it to **TFLite** format, and deploy it to an
-iOS application with [**Skafos**](https://dashboard.skafos.ai).
+iOS application with <a href="https://dashboard.skafos.ai" target="_blank">**Skafos**</a>.
 
 ## Setup
 Before you do any further setup, make sure you've cloned this repository:
@@ -12,9 +12,7 @@ $ git clone git@github.com:skafos/example-ml-apps.git
 $ cd example-ml-apps/TensorFlow/tflite/ios
 ```
 
-
-1. Go to the
-[**Skafos Dashboard**](https://dashboard.skafos.ai) and login or create a free account.
+1. Go to the <a href="https://dashboard.skafos.ai" target="_blank">**Skafos Dashboard**</a> and login or create a free account.
 2. Click the link to create a **New App Integration**.
 
 <img src="../../../assets/new_app.png"
@@ -51,7 +49,7 @@ Follow the [**Build & Run: Step-By-Step Instructions**](app/README.md#build--run
 Some important notes:
 - The initial model pre-bundled in the app is trained to classify random objects.
 - With Skafos, you can deploy your newly trained image classifier (from above).
-- Grab your **Environment Keys** for Dev and Prod from the App Settings page on the [dashboard](https://dashboard.skafos.ai).
+- Grab your **Environment Keys** for Dev and Prod from the App Settings page on the <a href="https://dashboard.skafos.ai" target="_blank">dashboard</a>.
 -----
 
 ## Questions & Issues?
