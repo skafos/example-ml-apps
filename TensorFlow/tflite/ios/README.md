@@ -12,7 +12,7 @@ $ git clone git@github.com:skafos/example-ml-apps.git
 $ cd example-ml-apps/TensorFlow/tflite/ios
 ```
 
-1. Go to the <a href="https://dashboard.skafos.ai" target="_blank">**Skafos Dashboard**</a> and login or create a free account.
+1. Go to the <a href="https://dashboard.skafos.ai" target="_blank">Skafos Dashboard</a> and login or create a free account.
 2. Click the link to create a **New App Integration**.
 
 <img src="../../../assets/new_app.png"
@@ -44,7 +44,7 @@ Make sure you have the following requirements satisfied:
 - Xcode command-line tools (run xcode-select --install)
 - CocoaPods (run bash sudo gem install cocoapods)
 
-Follow the [**Build & Run: Step-By-Step Instructions**](app/README.md#build--run-step-by-step-instructions) to build the app!
+Follow the [Build & Run: Step-By-Step Instructions](app/README.md#build--run-step-by-step-instructions) to build the app!
 
 Some important notes:
 - The initial model pre-bundled in the app is trained to classify random objects.

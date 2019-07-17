@@ -13,8 +13,8 @@ In this repository, we're assembling example workflows that demonstrate all part
 - <a href="https://dashboard.skafos.ai" target="_blank">Skafos</a> for model updates, management, and monitoring
 
 **Each example includes**:
-- Model training code (*Jupyter Nobetook*) that can be run on [**Google Colab**](https://colab.research.google.com/)
-- A mobile app that that demonstrates model integration and delivery runnable in [**Xcode**](https://developer.apple.com/support/xcode/)
+- Model training code (*Jupyter Nobetook*) that can be run on [Google Colab](https://colab.research.google.com/)
+- A mobile app that that demonstrates model integration and delivery runnable in [Xcode](https://developer.apple.com/support/xcode/)
 
 ### ML Training Frameworks
 These are libraries you would use to train machine learning models: anything from neural networks to decision tree classifiers. This is absolutely **NOT** an exhaustive list. More will be documented here over time.
@@ -71,7 +71,7 @@ ___
 
 Please don't hesitate to reach out!
 
--  [**Check out our platform documentation**](https://docs.skafos.ai), complete with FAQs
--  [**Signup for our Slack Channel**](https://join.slack.com/t/metismachine-skafos/shared_invite/enQtNTAxMzEwOTk2NzA5LThjMmMyY2JkNTkwNDQ1YjgyYjFiY2MyMjRkMzYyM2E4MjUxNTJmYmQyODVhZWM2MjQwMjE5ZGM1Y2YwN2M5ODI)
--  [**Find us on Reddit**](https://reddit.com/r/skafos)
+-  [Check out our platform documentation](https://docs.skafos.ai), complete with FAQs
+-  [Signup for our Slack Channel](https://join.slack.com/t/metismachine-skafos/shared_invite/enQtNTAxMzEwOTk2NzA5LThjMmMyY2JkNTkwNDQ1YjgyYjFiY2MyMjRkMzYyM2E4MjUxNTJmYmQyODVhZWM2MjQwMjE5ZGM1Y2YwN2M5ODI)
+-  [Find us on Reddit](https://reddit.com/r/skafos)
 -  Submit an issue to this github repo and we will address it
