@@ -6,7 +6,7 @@ model with [**TensorFlow**](www.tensorflow.org), convert it to **TFLite** format
 iOS application with [**Skafos**](https://dashboard.skafos.ai).
 
 ## Setup
-Before you do any further setup, make sure you have cloned this repository:
+Before you do any further setup, make sure you've cloned this repository:
 ```
 $ git clone git@github.com:skafos/example-ml-apps.git
 $ cd example-ml-apps/TensorFlow/tflite/ios
@@ -19,8 +19,8 @@ We recommend following these steps to get the most from the example:
 2. Click the link to create a **New App Integration**.
 
 <img src="../../../assets/new_app.png"
-     width="150" height="100"
-     style="left: left; margin-left: 40px;" />
+     width="20%"
+     style="left: left; margin-left: 50px;" />
 
 3. Give the app a name like `TF-Lite-iOS-App` (or something similar).
 4. Create a new model called `ImageClassifier`.
@@ -47,7 +47,7 @@ Make sure you have the following requirements satisfied:
 - Xcode command-line tools (run xcode-select --install)
 - CocoaPods (run bash sudo gem install cocoapods)
 
-Follow the [**Build & Run: Step-By-Step Instructions**](app/README.md#requirements) to build the app!
+Follow the [**Build & Run: Step-By-Step Instructions**](app/README.md#build--run-step-by-step-instructions) to build the app!
 
 Some important notes:
 - The initial model pre-bundled in the app is trained to classify random objects.

@@ -42,8 +42,8 @@ Our collection of example machine learning apps will continue to grow over time:
   - **ML Use-Case**: Natural Language Processing: Text Generation
   - **ML Training Framework**: Keras
   - **On-Device ML Format**: CoreML
-  
-#### Getting Started
+
+## Getting Started
 First, clone this repo:
 ```bash
 $ git clone git@github.com:skafos/example-ml-apps.git

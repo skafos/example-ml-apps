@@ -28,7 +28,8 @@ git clone https://github.com/skafos/example-ml-apps.git
 ```bash
 cd example-ml-apps/TensorFlow/tflite/ios/app/ && pod install
 ```
-    _Note: If you have installed this pod before and that command doesn't work, try
+
+_Note: If you have installed this pod before and that command doesn't work, try
 `pod update`._
 
 3. At the end of this step you should have a file called
@@ -73,7 +74,7 @@ bundle separately in that case.
 3. You should see the model you just delivered in the dashboard. Click the "Deploy" button to deliver it to your Dev environment.
 
 <img src="../../../../assets/model_versions.png" width="70%"
-     style="left: left; margin-left: 40px;" />
+     style="left: left; margin-left: 100px;" />
 
 4. You will need to stop and re-run your application in XCode. Then you will see the model predictions change to reflect the newly delivered model! It may take a few seconds depending on network speed.
 
