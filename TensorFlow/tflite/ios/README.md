@@ -5,7 +5,6 @@ In this example, you will see how to train an **Image Classification**
 model with [**TensorFlow**](www.tensorflow.org), convert it to **TFLite** format, and deploy it to an
 iOS application with [**Skafos**](https://dashboard.skafos.ai).
 
-
 ## Setup
 Before you do any further setup, make sure you have cloned this repository:
 ```
@@ -35,16 +34,25 @@ We've provided some Python code (*Jupyter Notebook*) that can be run on Google C
 
 Some important notes:
 - The model is trained to classify an image as a rabbit, mouse, hamster, fish, lizard, or snake.
-- The notebook walks you through building a TensorFlow Lite model & delivering it to your app using the Skafos SDK.
-- You will need to grab your **Skafos API Token** from the account settings page on the [dashboard](https://dashboard.skafos.ai).
+- Grab your **Skafos API Token** from the Account Settings page on the [dashboard](https://dashboard.skafos.ai).
 
-### 2. App
-We've provided a pre-packed Xcode project for you to work with. All project contents can be found in the `app/` subdirectory.
+### 2. iOS App
+We've provided a pre-packed Xcode project for you to work with. All project contents can be found in the `app/` subdirectory. *The app is based on [TensorFlow's example](https://github.com/tensorflow/examples/tree/master/lite/examples/image_classification/ios), but we've integrated the [Skafos iOS Framework](https://github.com/skafos/ios) to handle model updates over-the-air.*
 
-*The app is based on [TensorFlow's example](https://github.com/tensorflow/examples/tree/master/lite/examples/image_classification/ios), but we've integrated the [Skafos iOS Framework](https://github.com/skafos/ios) to handle model updates over-the-air.*
+Make sure you have the following requirements satisfied:
 
+- Device with iOS 12.0 or above
+- Xcode 10.0 or above
+- Valid Apple Developer ID
+- Xcode command-line tools (run xcode-select --install)
+- CocoaPods (run bash sudo gem install cocoapods)
 
+Follow the [**Build & Run: Step-By-Step Instructions**](app/README.md#requirements) to build the app!
 
+Some important notes:
+- The initial model pre-bundled in the app is trained to classify random objects.
+- With Skafos, you can deploy your newly trained image classifier (from above).
+- Grab your **Environment Keys** for Dev and Prod from the App Settings page on the [dashboard](https://dashboard.skafos.ai).
 -----
 
 ## Questions & Issues?
