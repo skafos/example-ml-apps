@@ -12,7 +12,6 @@ $ git clone git@github.com:skafos/example-ml-apps.git
 $ cd example-ml-apps/TensorFlow/tflite/ios
 ```
 
-We recommend following these steps to get the most from the example:
 
 1. Go to the
 [**Skafos Dashboard**](https://dashboard.skafos.ai) and login or create a free account.
@@ -25,7 +24,7 @@ We recommend following these steps to get the most from the example:
 3. Give the app a name like `TF-Lite-iOS-App` (or something similar).
 4. Create a new model called `ImageClassifier`.
 
-Now you're all set to run this example end-to-end! We recommend starting with the model building step.
+Now you're all setup to upload model versions and deploy to an iOS app from the dashboard!
 
 ### 1. Model Building
 We've provided some Python code (*Jupyter Notebook*) that can be run on Google Colab to train an image classification model:

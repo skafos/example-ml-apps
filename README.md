@@ -1,18 +1,18 @@
 # Skafos Example ML Apps
 
-*At Skafos, we are committed to building a platform that integrates with popular Machine Learning (ML) training frameworks & on-device ML formats, to create the best possible user experience delivering models to the edge.*
+*We are committed to building a platform that integrates with popular Machine Learning (ML) training frameworks & on-device ML formats, to create the best possible user experience delivering models to the edge.*
 
 With the wide array of tools and technologies available, **it is challenging to develop an end-to-end machine learning architecture for mobile ML deployment**.
 
 ## Overview
 In this repository, we're assembling example workflows that demonstrate all parts of the end-to-end pipeline: *model training*, *delivery*, and *mobile app integration*.
 
-Each example features:
+**Each example features**:
 - A task oriented ML use-case
-- An [ML Training Framework](#ml training frameworks) & [On-Device ML Format](#on-device ml formats) (*see description below*)
+- An [ML Training Framework](#ml-training-frameworks) & [On-Device ML Format](#on-device-ml-formats) (*see description below*)
 - [Skafos](https://dashboard.skafos.ai) for model updates, management, and monitoring
 
-Each example includes:
+**Each example includes**:
 - Model training code (*Jupyter Nobetook*) that can be run on [**Google Colab**](https://colab.research.google.com/)
 - A mobile app that that demonstrates model integration and delivery runnable in [**Xcode**](https://developer.apple.com/support/xcode/)
 
@@ -34,11 +34,11 @@ Once you've trained a machine learning model, **you have to convert it to a form
 ## Available Examples
 Our collection of example machine learning apps will continue to grow over time:
 
-- [TensorFlow -> TFLite: Image Classification iOS](https://github.com/skafos/example-ml-apps/tree/master/TensorFlow/tflite/ios)
+- [**TensorFlow -> TFLite: Image Classification iOS**](https://github.com/skafos/example-ml-apps/tree/master/TensorFlow/tflite/ios)
   - **ML Use-Case**: Image Classification
   - **ML Training Framework**: TensorFlow
   - **On-Device ML Format**: TFLite
-- [Keras -> CoreML: Phrase Generation iOS](https://github.com/skafos/example-ml-apps/tree/master/Keras/coreml/ios)
+- [**Keras -> CoreML: Phrase Generation iOS**](https://github.com/skafos/example-ml-apps/tree/master/Keras/coreml/ios)
   - **ML Use-Case**: Natural Language Processing: Text Generation
   - **ML Training Framework**: Keras
   - **On-Device ML Format**: CoreML
@@ -56,6 +56,14 @@ $ more README.md
 ```
 
 *More coming soon!*
+
+### How To Best Use These Examples
+Feel free to look around and explore as you wish! However we recommend following these steps for each example you try:
+
+1. [Create a free Skafos account](https://dashboard.skafos.ai/sign-up) and login
+2. In the dashboard, create a new app integration and model for the example
+3. Go through the model training and upload steps
+4. Go through the app building steps to see the ML model in action and Skafos perform model updates
 
 ___
 

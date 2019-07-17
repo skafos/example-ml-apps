@@ -35,7 +35,7 @@ _Note: If you have installed this pod before and that command doesn't work, try
 3. At the end of this step you should have a file called
 `ImageClassification.xcworkspace`. Open the Xcode workspace:
 ```bash
-open ImageClassification.xcworkspace`
+open ImageClassification.xcworkspace
 ```
 
 4.  Select the `ImageClassification` project in the left hand navigation to open
