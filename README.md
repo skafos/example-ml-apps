@@ -65,7 +65,7 @@ Feel free to look around and explore as you wish! However we recommend following
 <img src="assets/new_app.png" width="20%" style="float; margin-left: 20px; margin-top: 10px; margin-bottom: 10px;"/>
 <img src="assets/new_model.png" width="20%" style="float; margin-left: 10px; margin-top: 10px; margin-bottom: 10px;"/>
 
-3. Go through the model training and upload steps in the example
+3. Go through the model training and upload example code
 4. Go through the app building steps to see the ML model in action and Skafos perform model updates
 
 ___
