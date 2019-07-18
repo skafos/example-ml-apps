@@ -1,4 +1,4 @@
-<img src="https://skafos.ai/wp-content/uploads/2019/05/skafos_horizontal_on_white_beta@1x.svg" width="100%">
+<img src="https://skafos.ai/wp-content/uploads/2019/05/skafos_horizontal_on_white_beta@1x.svg" width="100%" style="float; margin-bottom: 30px">
 
 # Example ML Apps
 
