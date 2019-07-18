@@ -56,9 +56,7 @@ $ cd example-ml-apps/TensorFlow/tflite/ios
 $ more README.md
 ```
 
-*More coming soon!*
-
-### How To Best Use These Examples
+## How To Best Use These Examples
 Feel free to look around and explore as you wish! However we recommend following these steps for each example you try:
 
 1. <a href="https://dashboard.skafos.ai" target="_blank">Create a free Skafos account</a> and login
