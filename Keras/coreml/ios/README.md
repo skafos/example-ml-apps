@@ -41,8 +41,8 @@ Make sure you have the following requirements satisfied:
 - Device with iOS 12.0 or above
 - Xcode 10.0 or above
 - Valid Apple Developer ID
-- Xcode command-line tools (run xcode-select --install)
-- CocoaPods (run bash sudo gem install cocoapods)
+- Xcode command-line tools (run `xcode-select --install`)
+- CocoaPods (run `sudo gem install cocoapods`)
 
 Follow the [Build & Run: Step-By-Step Instructions](app/README.md#build--run-step-by-step-instructions) to build the app!
 

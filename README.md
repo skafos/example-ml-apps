@@ -1,5 +1,5 @@
-# Skafos Example ML Apps
 <img src="https://skafos.ai/wp-content/uploads/2019/05/skafos_horizontal_on_white_beta@1x.svg" width="100%">
+# Example ML Apps
 
 *We are committed to building a platform that integrates with popular Machine Learning (ML) training frameworks & on-device ML formats, to create the best possible user experience delivering models to the edge.*
 
