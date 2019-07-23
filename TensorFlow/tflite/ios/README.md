@@ -19,7 +19,7 @@ $ cd example-ml-apps/TensorFlow/tflite/ios
      width="20%"
      style="left: left; margin-left: 50px;" />
 
-3. Give the app a name like `TF-Lite-iOS-App` (or something similar).
+3. Give the app a name like `ImageClassificationTFLite` (or something similar).
 4. Create a new model called `ImageClassifier`.
 
 Now you're all setup to upload model versions and deploy to an iOS app from the dashboard!
