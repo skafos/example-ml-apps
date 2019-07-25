@@ -25,8 +25,8 @@ $ cd example-ml-apps/TensorFlow/coreml/ios
 Now you're all setup to upload model versions and deploy to an iOS app from the dashboard!
 
 ### 1. Model Building
-We've provided some Python (TensorFlow) training code that you can use to build an image classification model using our open source CLI, [Parago](https://github.com/skafos/parago-cli), with very little hassle. The initial code was written by TF, but we adapted it just for you!
-While training, you can even visualize ongoing accuracy and loss metrics over time using tensorboard.
+We've provided some Python ([TensorFlow](https://tensorflow.org)) training code that you can use to build an image classification model to identify common pets using our open source CLI, [Parago](https://github.com/skafos/parago-cli), with very little hassle. The [original training code](https://github.com/tensorflow/hub/raw/master/examples/image_retraining/retrain.py) was written by TF, but we adapted it just for you!
+While training, you can visualize ongoing accuracy and loss metrics over time using tensorboard.
 
 1. [Download Parago](https://www.npmjs.com/package/parago)
 ```bash
@@ -40,14 +40,14 @@ $ cd tf-image-classifier/
 $ conda env create -f environment.yml && conda activate tf-image-classifier
 ```
 
-3. Load the dataset:
+3. Load the pets dataset:
 ```bash
-$ pgo data load --env data_src=poison_plants
+$ pgo data load --env data_src=more_pets
 ```
 
 4. Train the model:
 ```bash
-$ pgo train --env epochs=100
+$ pgo train --env epochs=3000
 ```
 
 5. Visualize training progress in your browser w/ tensorboard (*Then navigate to `localhost:6006` in your browser*):
@@ -62,9 +62,10 @@ $ pgo deploy
 *You will be prompted to enter your Skafos API Token, Org Name, App Name, and Model Name*
 
 **Some important notes:**
-- The model is trained to classify a plant as one of 6 categories: Atlantic Poison Oak, Eastern Poison Ivy, Lookalike, Pacific Poison Oak, Poison Sumac, Western Poison Ivy
+- The model is trained to classify an animal image into one of 6 categories: Fish, Hamster, Lizard, Mouse, Rabbit, Snake
 - Your **Skafos API Token** can be found on the Account Settings page on the [dashboard](https://dashboard.skafos.ai)
 - Check the project's `parago.yml` and `README.md` file to see a list of all available environment options for the different commands
+- Want to make your own? Just replaced the image subfolders in the `data/` directory with your own images
 
 ### 2. iOS App
 We've provided a pre-packed Xcode project for you to work with. All project contents can be found in the `app/` subdirectory. We've integrated the [Skafos iOS Framework](https://github.com/skafos/ios) to handle model updates over-the-air.
@@ -80,7 +81,7 @@ Make sure you have the following requirements satisfied:
 Follow the [Build & Run: Step-By-Step Instructions](app/README.md#build--run-step-by-step-instructions) to build the app!
 
 Some important notes:
-- The initial model pre-bundled in the app is trained to classify plants as either "Poison Ivy" or a "Lookalike".
+- The initial model pre-bundled in the app is trained to classify animal images as either a "Cat" or a "Dog".
 - With Skafos, you can deploy your newly trained image classifier (from above).
 - Grab your **Environment Keys** for Dev and Prod from the App Settings page on the <a href="https://dashboard.skafos.ai" target="_blank">dashboard</a>. Need help? See the [Integration Guide](https://docs.skafos.ai/sections/integrate.html) for more details here.
 -----
