@@ -1,5 +1,5 @@
 # TensorFlow & Skafos on iOS
-<img src="https://4.bp.blogspot.com/-fmvGmp_whI8/WgtKIGtvHvI/AAAAAAAAEFM/IqS891VhVvUd_j73guSDUDS0YUYDAYgWACLcBGAs/s1600/image1.png" width="400" height="70"> <img src="https://skafos.ai/wp-content/uploads/2019/05/skafos_horizontal_on_white_beta@1x.svg" width="400" height="70">
+<img src="https://www.gstatic.com/devrel-devsite/va3a0eb1ff00a004a87e2f93101f27917d794beecfd23556fc6d8627bba2ff3cf/tensorflow/images/lockup.svg" width="400" height="70"> <img src="https://skafos.ai/wp-content/uploads/2019/05/skafos_horizontal_on_white_beta@1x.svg" width="400" height="70">
 
 In this example, you will see how to train an **Image Classification**
 model with [**TensorFlow**](www.tensorflow.org), convert it to **Core ML** format, and deploy it to an
@@ -7,7 +7,7 @@ iOS application with <a href="https://dashboard.skafos.ai" target="_blank">**Ska
 
 ## Setup
 Before you do any further setup, make sure you've cloned this repository:
-```
+```bash
 $ git clone git@github.com:skafos/example-ml-apps.git
 $ cd example-ml-apps/TensorFlow/coreml/ios
 ```
@@ -25,13 +25,46 @@ $ cd example-ml-apps/TensorFlow/coreml/ios
 Now you're all setup to upload model versions and deploy to an iOS app from the dashboard!
 
 ### 1. Model Building
-We've provided some Python code (*Jupyter Notebook*) that can be run on Google Colab to train an image classification model:
+We've provided some Python (TensorFlow) training code that you can use to build an image classification model using our open source CLI, [Parago](https://github.com/skafos/parago-cli), with very little hassle. The initial code was written by TF, but we adapted it just for you!
+While training, you can even visualize ongoing accuracy and loss metrics over time using tensorboard.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/skafos/example-ml-apps/blob/master/TensorFlow/coreml/ios/model-building/poison_ivy_coreml.ipynb)
+1. [Download Parago](https://www.npmjs.com/package/parago)
+```bash
+$ npm install -g parago
+```
 
-Some important notes:
-- The model is trained to classify a plant as ____, ___, ___.
-- Grab your **Skafos API Token** from the Account Settings page on the [dashboard](https://dashboard.skafos.ai).
+2. Create a new TensowFlow Image Classifier project from the generator (`-g`):
+```bash
+$ pgo create myimageclassifier -g tf-image-classifier
+$ cd tf-image-classifier/
+$ conda env create -f environment.yml && conda activate tf-image-classifier
+```
+
+3. Load the dataset:
+```bash
+$ pgo data load --env data_src=poison_plants
+```
+
+4. Train the model:
+```bash
+$ pgo train --env epochs=100
+```
+
+5. Visualize training progress in your browser w/ tensorboard (*Then navigate to `localhost:6006` in your browser*):
+```bash
+$ tensorboard --logdir artifacts/retrain_logs
+```
+
+6. Once done, deploy (upload) the model to Skafos:
+```bash
+$ pgo deploy
+```
+*You will be prompted to enter your Skafos API Token, Org Name, App Name, and Model Name*
+
+**Some important notes:**
+- The model is trained to classify a plant as one of 6 categories: Atlantic Poison Oak, Eastern Poison Ivy, Lookalike, Pacific Poison Oak, Poison Sumac, Western Poison Ivy
+- Your **Skafos API Token** can be found on the Account Settings page on the [dashboard](https://dashboard.skafos.ai)
+- Check the project's `parago.yml` and `README.md` file to see a list of all available environment options for the different commands
 
 ### 2. iOS App
 We've provided a pre-packed Xcode project for you to work with. All project contents can be found in the `app/` subdirectory. We've integrated the [Skafos iOS Framework](https://github.com/skafos/ios) to handle model updates over-the-air.
@@ -47,9 +80,9 @@ Make sure you have the following requirements satisfied:
 Follow the [Build & Run: Step-By-Step Instructions](app/README.md#build--run-step-by-step-instructions) to build the app!
 
 Some important notes:
-- The initial model pre-bundled in the app is trained to classify plants ____.
+- The initial model pre-bundled in the app is trained to classify plants as either "Poison Ivy" or a "Lookalike".
 - With Skafos, you can deploy your newly trained image classifier (from above).
-- Grab your **Environment Keys** for Dev and Prod from the App Settings page on the <a href="https://dashboard.skafos.ai" target="_blank">dashboard</a>.
+- Grab your **Environment Keys** for Dev and Prod from the App Settings page on the <a href="https://dashboard.skafos.ai" target="_blank">dashboard</a>. Need help? See the [Integration Guide](https://docs.skafos.ai/sections/integrate.html) for more details here.
 -----
 
 ## Questions & Issues?

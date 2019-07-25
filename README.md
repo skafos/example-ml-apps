@@ -15,7 +15,7 @@ In this repository, we're assembling example workflows that demonstrate all part
 - <a href="https://dashboard.skafos.ai" target="_blank">Skafos</a> for model updates, management, and monitoring
 
 **Each example includes**:
-- Model training code (*Jupyter Nobetook*) that can be run on [Google Colab](https://colab.research.google.com/)
+- Model training code that can be run on [Google Colab](https://colab.research.google.com/) or on your local machine
 - A mobile app that that demonstrates model integration and delivery runnable in [Xcode](https://developer.apple.com/support/xcode/)
 
 ## Getting Started

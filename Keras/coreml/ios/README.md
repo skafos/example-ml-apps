@@ -6,7 +6,7 @@ iOS application with <a href="https://dashboard.skafos.ai" target="_blank">**Ska
 
 ## Setup
 Before you do any further setup, make sure you've cloned this repository:
-```
+```bash
 $ git clone git@github.com:skafos/example-ml-apps.git
 $ cd example-ml-apps/Keras/coreml/ios
 ```
