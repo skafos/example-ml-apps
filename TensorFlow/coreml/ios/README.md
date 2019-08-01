@@ -26,7 +26,7 @@ Now you're all setup to upload model versions and deploy to an iOS app from the 
 
 ### 1. Model Building
 We've provided some Python ([TensorFlow](https://tensorflow.org)) training code that you can use to build an image classification model to identify common pets using our open source CLI, [Parago](https://github.com/skafos/parago-cli), with very little hassle. The [original training code](https://github.com/tensorflow/hub/raw/master/examples/image_retraining/retrain.py) was written by TF, but we adapted it just for you!
-While training, you can visualize ongoing accuracy and loss metrics over time using tensorboard.
+While training, you can visualize ongoing accuracy and loss metrics in your browser.
 
 1. [Download Parago](https://www.npmjs.com/package/parago)
 ```bash
