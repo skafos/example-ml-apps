@@ -9,7 +9,7 @@ This iOS application uses a [TFLite](https://tensorflow.org/lite) model for [Ima
 *   Xcode 10.0 or above
 *   Valid Apple Developer ID
 *   Xcode command-line tools (run `xcode-select --install`)
-*   [CocoaPods](https://cocoapods.org/) (run `bash sudo gem install cocoapods`)
+*   [CocoaPods](https://cocoapods.org/) (run `sudo gem install cocoapods`)
 
 If this is a new install, you will need to run the Xcode application once to
 agree to the license before continuing.
@@ -71,11 +71,11 @@ bundle separately in that case.
 
 2. Go to the <a href="https://dashboard.skafos.ai" target="_blank">**Skafos Dashboard**</a>, navigate to the App, and then the `ImageClassfier` model that you made to go with this app integration.
 
-3. You should see the model you just delivered in the dashboard. Click the "Deploy" button to deliver it to your Dev environment.
+3. You should see the model you uplaoded in the dashboard. Click the "Deploy" button to deliver it to your Dev environment.
 
 <img src="../../../../assets/model_versions.png" width="70%"
      style="left: left; margin-left: 100px;" />
 
-4. You will need to stop and re-run your application in XCode. Then you will see the model predictions change to reflect the newly delivered model! It may take a few seconds depending on network speed.
+4. Because we are using Xcode to simulate the builds, you will need to stop and re-run your application to get the new model from Skafos. You will see the model predictions change to reflect the newly delivered model! This may take a few seconds depending on network speed.
 
 *Congratulations - you've just deployed your first Skafos model version to an app!*

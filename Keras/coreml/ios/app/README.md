@@ -1,7 +1,7 @@
 # CoreML Phrase Generator iOS App
 <img src="https://s3.amazonaws.com/keras.io/img/keras-logo-2018-large-1200.png" width="350" height="110"> <img src="https://skafos.ai/wp-content/uploads/2019/05/skafos_horizontal_on_white_beta@1x.svg" width="350" height="100">
 
-This iOS application uses a [CoreML]() model to predict likely next words in a phrase given some seed text. The model runs on-device, which is optimal for the user experience.
+This iOS application uses a [CoreML](https://developer.apple.com/documentation/coreml) model to predict likely next words in a phrase given some seed text. The model runs on-device, which is optimal for the user experience.
 
 ### About the Model
 The `PhraseGenModel.mlmodel` included in the app bundle was trained on text
@@ -13,7 +13,7 @@ from **Presidential Inaugural Addresses** over the last ~40 years. In the `model
 *   Xcode 10.0 or above
 *   Valid Apple Developer ID
 *   Xcode command-line tools (run `xcode-select --install`)
-*   [CocoaPods](https://cocoapods.org/) (run `bash sudo gem install cocoapods`)
+*   [CocoaPods](https://cocoapods.org/) (run `sudo gem install cocoapods`)
 
 If this is a new install, you will need to run the Xcode application once to
 agree to the license before continuing.
@@ -60,11 +60,11 @@ build and run (`cmd + R`) the app in Xcode.
 
 2. Go to the <a href="https://dashboard.skafos.ai" target="_blank">**Skafos Dashboard**</a>, navigate to the App, and then the `PhraseGenModel` that you made to go with this app integration.
 
-3. You should see the model you just delivered in the dashboard. Click the "Deploy" button to deliver it to your Dev environment.
+3. You should see the model you uploaded in the dashboard. Click the "Deploy" button to deliver it to your Dev environment.
 
 <img src="../../../../assets/model_versions.png" width="70%"
      style="left: left; margin-left: 100px;" />
 
-4. You will need to stop and re-run your application in XCode. Then you will see the model predictions change to reflect the newly delivered model! It may take a few seconds depending on network speed.
+4. Because we are using Xcode to simulate the builds, you will need to stop and re-run your application to get the new model from Skafos. You will see the model predictions change to reflect the newly delivered model! This may take a few seconds depending on network speed.
 
 *Congratulations - you've just deployed your first Skafos model version to an app!*
