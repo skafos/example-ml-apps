@@ -47,15 +47,20 @@ $ pgo data load --env data_src=more_pets
 
 4. Train the model:
 ```bash
-$ pgo train --env epochs=3000
+$ pgo train --env epochs=100
 ```
 
-5. Visualize training progress in your browser w/ tensorboard (*Then navigate to `localhost:6006` in your browser*):
+5. Visualize training progress in your browser. In a new terminal window with the same conda env activated:
 ```bash
-$ tensorboard --logdir artifacts/retrain_logs
+$ pgo run watch
 ```
 
-6. Once done, deploy (upload) the model to Skafos:
+6. Export the model to Core ML format:
+```bash
+$ pgo export
+```
+
+7. Once done, deploy (upload) the model to Skafos:
 ```bash
 $ pgo deploy
 ```
