@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     button.setTitle("Reload Model", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.setTitleColor(.gray, for: .highlighted)
-    button.titleLabel?.textAlignment = .left
+    button.titleLabel?.textAlignment = .center
     
     button.tintColor = UIColor.blue
     button.layer.borderWidth = 2.0

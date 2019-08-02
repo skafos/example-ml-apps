@@ -77,8 +77,7 @@ class MainViewController : ViewController {
   func loadLabels(labelsURL: URL) -> [String] {
     do {
       let contents = try String(contentsOf: labelsURL, encoding: .utf8)
-      let l = contents.components(separatedBy: .newlines)
-      return l
+      return contents.components(separatedBy: .newlines)
     } catch let error {
       print("ERROR: \(error)")
       fatalError("Labels file cannot be read. Please add a valid labels file and try again.")
@@ -130,7 +129,7 @@ class MainViewController : ViewController {
     alertController.view.addSubview(customView)
     
     customView.snp.makeConstraints { make in
-      make.top.equalToSuperview().offset(100)
+      make.top.equalToSuperview().offset(150)
       make.centerX.equalToSuperview()
       make.height.equalTo(previewImage.size.height)
     }
