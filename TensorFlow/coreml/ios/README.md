@@ -36,7 +36,7 @@ $ npm install -g parago
 2. Create a new TensowFlow Image Classifier project from the generator (`-g`):
 ```bash
 $ pgo create myimageclassifier -g tf-image-classifier
-$ cd tf-image-classifier/
+$ cd myimageclassifier/
 $ conda env create -f environment.yml && conda activate tf-image-classifier
 ```
 
