@@ -13,7 +13,6 @@
 		B12C5C8622F1F27500EBBF78 /* takePhotoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B12C5C8522F1F27500EBBF78 /* takePhotoIcon.png */; };
 		B12C5C8822F1F2C300EBBF78 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C5C8722F1F2C300EBBF78 /* MainViewController.swift */; };
 		B12C5C8A22F1F36600EBBF78 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C5C8922F1F36600EBBF78 /* UIImage+Extension.swift */; };
-		B12C5C8E22F206B600EBBF78 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12C5C8B22F1F3B700EBBF78 /* Info.plist */; };
 		B12C5C9222F20DB900EBBF78 /* output_labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12C5C9122F20DB900EBBF78 /* output_labels.txt */; };
 		B12C5C9622F21A1600EBBF78 /* ImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B12C5C9522F21A1600EBBF78 /* ImageClassifier.mlmodel */; };
 		B15A5D3F22F1EF18008D0D08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A5D3E22F1EF18008D0D08 /* AppDelegate.swift */; };
@@ -170,7 +169,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Skafos, LLC";
 				TargetAttributes = {
 					B15A5D3A22F1EF18008D0D08 = {
@@ -206,7 +205,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B12C5C8E22F206B600EBBF78 /* Info.plist in Resources */,
 				B12C5C8622F1F27500EBBF78 /* takePhotoIcon.png in Resources */,
 				B12C5C9222F20DB900EBBF78 /* output_labels.txt in Resources */,
 				B15A5D4922F1EF19008D0D08 /* LaunchScreen.storyboard in Resources */,
@@ -249,7 +247,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CoreMLImageClassification/Pods-CoreMLImageClassification-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-CoreMLImageClassification/Pods-CoreMLImageClassification-frameworks.sh",
 				"${PODS_ROOT}/Skafos/frameworks/Skafos.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
@@ -262,7 +260,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoreMLImageClassification/Pods-CoreMLImageClassification-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoreMLImageClassification/Pods-CoreMLImageClassification-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -419,6 +417,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CoreMLImageClassification/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,19 +425,20 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ai.skafos.CoreMLImageClassification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		B15A5D4F22F1EF19008D0D08 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11684559E0EC9DB5BD27A2AA /* Pods-CoreMLImageClassification.release.xcconfig */;
+			baseConfigurationReference = FE3141226485D50480415C5E /* Pods-CoreMLImageClassification.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CoreMLImageClassification/Support/CoreMLImageClassification.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CoreMLImageClassification/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -446,7 +446,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ai.skafos.CoreMLImageClassification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
